@@ -19,11 +19,10 @@ const products = [
 let order = [];
 
 function addToBasket(productId) {
-    // console.log(`Хотим добавить в корзину товар номер ${productId}`);
+
     let isExist = false;
 
     order.forEach(elem => {
-
         if(!isExist) {
             productId === elem.id ? isExist = true : isExist = false;
         }
@@ -34,10 +33,10 @@ function addToBasket(productId) {
         alert('Товар уже в корзине');
     } else {
         console.log(`Добавляем товар номер ${productId}`);
-        products.forEach( product => {
-        
+
+        products.forEach( product => {        
             if(product.id === productId) {
-                order.push(product);
+                order = [...order, product];
             }
         })
 
@@ -52,10 +51,7 @@ function removeFromBasket(productId) {
     console.log(`Удаляем товар номер: ${productId}`);
 
     order.forEach( (elem, index) => {
-
-        if(elem.id === productId) {
-            order.splice(index, 1);
-        }
+        if(elem.id === productId) order.splice(index, 1);
     })
 
     console.log(`Товаров в корзине: ${order.length}`);
