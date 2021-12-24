@@ -57,7 +57,7 @@ function addToBasket(productId) {
 
 function removeFromBasket(productId) {
     console.log('Удаляем товар');
-    //удаление товара из корзины
+
     order.forEach( (elem, index) => {
         console.log(elem);
         
@@ -66,7 +66,6 @@ function removeFromBasket(productId) {
         console.log(`Текущий в цикле id = ${elem.id}`);
         console.log(`${elem.id === productId}`);
         if(elem.id === productId) {
-            // order = order.pop(elem);
             
             order.splice(index, 1);
         }
@@ -80,11 +79,14 @@ function removeFromBasket(productId) {
 
 
 function rerenderTotalPrice() {
-    //подсчет общей стоимости заказа
 
-
+    let totalPrice = order.reduce((ttlPrice, elem, order) => {
+        return ttlPrice + elem.price;
+    }, 0);
+    
 
     document.getElementById('total').innerText = totalPrice;
+    return totalPrice;
 }
 
 
