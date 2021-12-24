@@ -19,30 +19,24 @@ const products = [
 let order = [];
 
 function addToBasket(productId) {
-    console.log(`Товаров на витрине: ${products.length}`);
-    console.log(`Хотим добавить в корзину товар номер ${productId}`);
+    // console.log(`Хотим добавить в корзину товар номер ${productId}`);
     let isExist = false;
-    //console.log(!isExist);
+
     order.forEach(elem => {
-        //console.log('хeq');
+
         if(!isExist) {
             productId === elem.id ? isExist = true : isExist = false;
-            //console.log(`isExist ${isExist} (if)`);
         }
-        //console.log(`isExist ${isExist} (forEach)`);
     })
-
-    console.log(`isExist ${isExist} (func)`);
 
     if (isExist) {
         console.log('Товар уже в корзине');
-        // alert('Товар уже в корзине');
+        alert('Товар уже в корзине');
     } else {
-        console.log('Добавляем товар');
+        console.log(`Добавляем товар номер ${productId}`);
         products.forEach( product => {
-
+        
             if(product.id === productId) {
-                // order = [...order, product];
                 order.push(product);
             }
         })
@@ -50,23 +44,16 @@ function addToBasket(productId) {
         console.log(`Товаров в корзине: ${order.length}`);
     }
 
-
     renderCart();
     rerenderTotalPrice();
 }
 
 function removeFromBasket(productId) {
-    console.log('Удаляем товар');
+    console.log(`Удаляем товар номер: ${productId}`);
 
     order.forEach( (elem, index) => {
-        console.log(elem);
-        
-        console.log(`index у order ${index}`);
-        console.log(`Ищем такой id = ${productId}`);
-        console.log(`Текущий в цикле id = ${elem.id}`);
-        console.log(`${elem.id === productId}`);
+
         if(elem.id === productId) {
-            
             order.splice(index, 1);
         }
     })
@@ -84,7 +71,7 @@ function rerenderTotalPrice() {
         return ttlPrice + elem.price;
     }, 0);
     
-
+    console.log(`Total Price: ${totalPrice}`);
     document.getElementById('total').innerText = totalPrice;
     return totalPrice;
 }
